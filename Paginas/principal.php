@@ -6,22 +6,18 @@
     <title>Blog Admin</title>
 </head>
 <body>
-    <h1>PÁGINA DE ADMIN</h1>
+    <h1>PÁGINA DE USUÁRIO</h1>
     <!-- Formulário -->
-    <form action="conexao.php" method="POST">
+    <form action="../Banco de dados/conexao.php" method="POST">
         <label for="comentario">Digite seu comentário no campo de texto a seguir:</label> <br>
         <textarea name="comentario" rows="4" cols="40"></textarea> <br> <br>
         <input type="submit" name="inserirComentario" value="Comentar"> <br> <br> <!--inserir novo comentario-->
-        <input type="submit" name="deletar" value="Deletar"> <br> <br> <!--apagar todos os comentarios-->
         <input type="submit" name="sair" value="Sair"> <br>  <!--sair da sessão-->
-
-        <!-- Exemplo de botão de envio usando uma imagem: (aplicar isso depois) -->
-        <!-- <input type="image" width="25px" src="../Imagens/mandar.png" alt="Enviar comentário"> -->
     </form>
     <h3>Comentários:</h3>
     
     <?php
-        include("comentarios.php");
+        include("../Banco de dados/comentarios.php");
     ?>
 </body>
 </html>

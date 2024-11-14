@@ -6,7 +6,7 @@
     <title>Registro</title>
 </head>
 <body>
-    <form action="../Banco de dados/registrar.php" method="POST">
+    <form action="../Banco de dados/informacoes.php" method="POST">
         <label for="nome">Digite seu nome:</label>
         <input type="text" name="nome"> <br> <br>
         <label for="login">Digite seu e-mail:</label>
