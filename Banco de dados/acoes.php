@@ -81,7 +81,7 @@
         header("Location: ../Paginas/index-admin.php");
         exit();
     }else{
-        header("Location: ../Paginas/principal.php");
+        header("Location: ../Paginas/index.php");
         exit();
     }
     

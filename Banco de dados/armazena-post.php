@@ -23,7 +23,7 @@
             VALUES ('$titulo', '$conteudo', '$imagem', '$usuario_id')");
 
     // Redirecionamento para a página principal
-    header("Location: ../Paginas/principal.php");
+    header("Location: ../Paginas/index.php");
     exit();
 
 ?>
