@@ -14,7 +14,7 @@
         <input type="submit" value="Entrar" name="entrar">
         <p>Não tem uma conta ainda? <a href="registro.php">Crie uma agora</a></p>
     </form>
-
+    
     <?php
         session_start();
         if(isset($_SESSION['mensagem_erro'])){

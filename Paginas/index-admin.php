@@ -8,7 +8,10 @@
 <body>
     <h1>PÁGINA DE ADMIN</h1>
     <!-- Formulário -->
-    <form action="conexao.php" method="POST">
+    <?php
+        include("../Banco de dados/criar-post-comentario.php");
+    ?>
+    <form action="../Banco de dados/acoes.php" method="POST">
         <label for="comentario">Digite seu comentário no campo de texto a seguir:</label> <br>
         <textarea name="comentario" rows="4" cols="40"></textarea> <br> <br>
         <input type="submit" name="inserirComentario" value="Comentar"> <br> <br> <!--inserir novo comentario-->
@@ -20,8 +23,6 @@
     </form>
     <h3>Comentários:</h3>
     
-    <?php
-        include("comentarios.php");
-    ?>
+    
 </body>
 </html>
