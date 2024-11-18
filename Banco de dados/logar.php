@@ -24,22 +24,14 @@
     // }
 
     //Login do Admin
-    if($email == "admin" && $senha == "1234"){
-        echo "Logou! Bem-vindo, admin!";
-        $_SESSION["logouAdmin"] = 1;
-    } else {
-        echo "Usuário ou senha inválidos!";
-    }
-    
+    include("conectarAdmin.php");
     //Redirecionamento para a página do admin
     if($_SESSION['logouAdmin'] == 1){
         echo "Você está logado!";
         header('location: ../Paginas/index-admin.php');
         exit();
     }
-
     //Login do usuário
-    
     
     $verificaUsuario = mysqli_query($conexao, "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'");
     if(mysqli_num_rows($verificaUsuario) == 1){

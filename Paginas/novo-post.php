@@ -6,7 +6,7 @@
     <title>Criar Post</title>
 </head>
 <body>
-    <form action="../Banco de dados/armazena-post.php" method="POST">
+    <form action="../Banco de dados/criar-post.php" method="POST">
         <label for="titulo">Título:</label>
         <input type="text" name="titulo"> <br> <br>
         <label for="imagem" >Link para a imagem (opcional):</label>
@@ -16,6 +16,5 @@
         <textarea name="conteudo" rows="10" cols="40"></textarea> <br> <br>
         <input type="submit" value="Criar Post" name="criarPost">
     </form>
-
 </body>
 </html>

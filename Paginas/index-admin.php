@@ -6,23 +6,21 @@
     <title>Blog Admin</title>
 </head>
 <body>
-    <h1>PÁGINA DE ADMIN</h1>
-    <!-- Formulário -->
-    <?php
-        include("../Banco de dados/criar-post-comentario.php");
-    ?>
+    <h1>Página do Admin</h1>
+    <!-- Aqui deve conter os posts mais recentes -->
+    <!-- Formulário (Deve conter todas as opções que o usuário pode utilizar) -->
     <form action="../Banco de dados/acoes.php" method="POST">
-        <label for="comentario">Digite seu comentário no campo de texto a seguir:</label> <br>
-        <textarea name="comentario" rows="4" cols="40"></textarea> <br> <br>
-        <input type="submit" name="inserirComentario" value="Comentar"> <br> <br> <!--inserir novo comentario-->
-        <input type="submit" name="deletar" value="Deletar"> <br> <br> <!--apagar todos os comentarios-->
+        
+        <input type="submit" name="novoPost" value="Novo Post"> 
         <input type="submit" name="sair" value="Sair"> <br>  <!--sair da sessão-->
-
-        <!-- Exemplo de botão de envio usando uma imagem: (aplicar isso depois) -->
-        <!-- <input type="image" width="25px" src="../Imagens/mandar.png" alt="Enviar comentário"> -->
+        <!-- Modificações futuras -->
+        <!-- <input type="submit" name="verComentarios" value="Ver todos os meus comentários"> -->
+        <!-- <input type="submit" name="verPosts" value="Ver todos os meus posts"> <br> <br> -->
     </form>
-    <h3>Comentários:</h3>
-    
-    
+    <!-- Mostrando todos os posts: -->
+    <?php
+        //Incluindo o arquivo de conexão
+        include("../Banco de dados/mostrar-post-comentario.php");
+    ?>
 </body>
 </html>
