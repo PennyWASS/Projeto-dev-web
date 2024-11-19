@@ -3,15 +3,17 @@
     include("conectarDB.php");
     session_start();
     //Criando a tabela de comentários caso ela não exista
-    mysqli_query($conexao, "CREATE TABLE IF NOT EXISTS comentarios (
-            id INT NOT NULL AUTO_INCREMENT, 
-            comentario varchar(255) NOT NULL, 
-            usuario_id INT NOT NULL,
-            post_id INT NOT NULL,
-            PRIMARY KEY(id), 
-            CONSTRAINT fk_usuario_comentario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
-            CONSTRAINT fk_post_comentario FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE)");
-    
+    $verificaTabelaComentarios = mysqli_query($conexao, "SHOW TABLES LIKE 'comentarios'");
+    if(mysqli_num_rows($verificaTabelaComentarios) == 0){
+        mysqli_query($conexao, "CREATE TABLE IF NOT EXISTS comentarios (
+                id INT NOT NULL AUTO_INCREMENT, 
+                comentario varchar(255) NOT NULL, 
+                usuario_id INT NOT NULL,
+                post_id INT NOT NULL,
+                PRIMARY KEY(id), 
+                CONSTRAINT fk_usuario_comentario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+                CONSTRAINT fk_post_comentario FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE)");
+    } 
 
     //Captura o botão de inserir comentário
     $inserirComentario = isset($_POST["inserirComentario"]); 
@@ -28,8 +30,9 @@
             }
             echo $tabela["conteudo"] . "<br>";
             echo "<h3>Comentários:</h3>";
-            $comentarios = mysqli_query($conexao, "SELECT * FROM comentarios WHERE post_id = ".$tabela["id"]. " ORDER BY id DESC");
-            if(mysqli_num_rows($comentarios) > 0){
+            
+            if(mysqli_num_rows($verificaTabelaComentarios) > 0){
+                $comentarios = mysqli_query($conexao, "SELECT * FROM comentarios WHERE post_id = ".$tabela["id"]. " ORDER BY id DESC");
                 while($comentario = mysqli_fetch_array($comentarios)){
                     echo $comentario["comentario"] . "<br>";
                 }
@@ -49,6 +52,7 @@
             ";
 
             echo "<hr>";
+            
         }
     } else{
         echo "<br> Sem posts no momento.";
@@ -59,7 +63,14 @@
         $usuario_id = $_SESSION['usuario_id'];
         $post_id = $_POST['post_id'];
 
-        mysqli_query($conexao, "INSERT INTO comentarios (comentario, usuario_id, post_id) VALUES ('$comentario', '$usuario_id', '$post_id')");
+        if($comentario == ""){
+            echo "O campo de comentário não pode estar vazio.";
+            exit();
+        } else{
+            mysqli_query($conexao, "INSERT INTO comentarios (comentario, usuario_id, post_id) VALUES ('$comentario', '$usuario_id', '$post_id')");
+            header("Location: ../Paginas/index.php");
+            exit();
+        }        
         header("Location: ../Paginas/index.php");
         exit();
     }
