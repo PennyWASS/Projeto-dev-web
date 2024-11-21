@@ -2,7 +2,6 @@
     session_start();
     include("conectarDB.php"); //Conexão com o banco de dados
     // Armazenando os valores dos botões em variáveis
-    $comentario = $_POST["comentario"];
     $sair = isset($_POST["sair"]);
     $deletar = isset($_POST["deletar"]);
     
@@ -12,15 +11,6 @@
 
     //ID do usuário recuperado do banco de dados
     $usuario_id = $_SESSION['usuario_id']; 
-    
-    //ID do post recuperado do banco de dados
-    // include("criar-post");
-    // $pegarIdPost = mysqli_query($conexao, "SELECT id FROM posts WHERE titulo = '$titulo' AND conteudo = '$conteudo' AND imagem = '$imagem'");
-    // $id = mysqli_fetch_assoc($pegarIdPost);
-    // $_SESSION["post_id"] = $id['id'];
-    // $post_id = $_SESSION["post_id"];
-    
-   
 
     //Inserindo um novo post
     if($novoPost){
@@ -40,15 +30,33 @@
 
     // //Mostrando todos os posts daquele usuario:
     // if($verPosts){
-    //     $dados = mysqli_query($conexao, "SELECT * FROM posts WHERE usuario_id = '".$_SESSION["usuario_id"]."'");
-    //     while($tabela = mysqli_fetch_assoc($dados)){
-    //         echo "<h4>". $tabela["titulo"]. "</h4>";
-    //         if($tabela["imagem"] != ""){
-    //             echo "<img width='300px' alt='Imagem' src='".$tabela["imagem"]."'>" . "<br>";
+    //     $verificaTabelaComentarios = mysqli_query($conexao, "SHOW TABLES LIKE 'comentarios'"); 
+    //     $verificaTabelaPosts = mysqli_query($conexao, "SHOW TABLES LIKE 'posts'");
+    //     if(mysqli_num_rows($verificaTabelaPosts) > 0){
+    //         $dados = mysqli_query($conexao, "SELECT * FROM posts");
+    //         while ($tabela = mysqli_fetch_array($dados)) {
+    //             // Mostrando os posts
+    //             echo "<h4>". $tabela["titulo"]. "</h4>";
+    //             if($tabela["imagem"] != ""){
+    //                 echo "<img width='300px' alt='Imagem' src='".$tabela["imagem"]."'>" . "<br>";
+    //             }
+    //             echo $tabela["conteudo"] . "<br>";
+    //             echo "<h3>Comentários:</h3>";
+                
+    //             // Mostrando os comentários do post
+    //             if(mysqli_num_rows($verificaTabelaComentarios) > 0){
+    //                 $comentarios = mysqli_query($conexao, "SELECT * FROM comentarios WHERE post_id = ".$tabela["id"]. " ORDER BY id DESC");
+    //                 while($comentario = mysqli_fetch_array($comentarios)){
+    //                     echo $comentario["comentario"] . "<br>";
+    //                 }
+    //             } else{
+    //                 echo "Sem comentários no momento.";
+    //             }
+    
+    //             echo "<hr>";
     //         }
-    //         echo $tabela["conteudo"] . "<br>";
-            
     //     }
+    //     // header("Location: ../Paginas/index.php");
     // }
 
     //Deletando todos os comentários
