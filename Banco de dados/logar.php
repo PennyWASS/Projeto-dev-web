@@ -27,7 +27,10 @@
     include("conectarAdmin.php");
     //Redirecionamento para a página do admin
     if($_SESSION['logouAdmin'] == 1){
-        echo "Você está logado!";
+        //Pegando o ID do usuário
+        $pegarId = mysqli_query($conexao, "SELECT id FROM usuarios WHERE email = '$email' AND senha = '$senha'");
+        $id = mysqli_fetch_assoc($pegarId);
+        $_SESSION["usuario_id_admin"] = $id['id'];
         header('location: ../Paginas/index-admin.php');
         exit();
     }

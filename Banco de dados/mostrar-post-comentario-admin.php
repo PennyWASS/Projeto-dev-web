@@ -16,7 +16,6 @@
                 CONSTRAINT fk_post_comentario FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE)");
     } 
 
-
     // Mostrando os posts e os comentários de cada post com o campo de texto para inserir um novo comentário
     $verificaTabelaPosts = mysqli_query($conexao, "SHOW TABLES LIKE 'posts'");
     if(mysqli_num_rows($verificaTabelaPosts) > 0){
@@ -35,21 +34,35 @@
                 $comentarios = mysqli_query($conexao, "SELECT * FROM comentarios WHERE post_id = ".$tabela["id"]. " ORDER BY id DESC");
                 while($comentario = mysqli_fetch_array($comentarios)){
                     echo $comentario["comentario"] . "<br>";
+                    echo "<form action='../Banco de dados/mostrar-post-comentario-admin.php' method='POST'>
+                    <input type='submit' name='excluirComentario' value='Excluir Comentário'> <br> <br> <!--excluir comentario-->
+                    
+                    <input type='hidden' name='comentario' value='".$comentario["comentario"]."'>
+                    <input type='hidden' name='post_id' value='".$tabela["id"]."'>
+                    </form>";
                 }
             } else{
                 echo "Sem comentários no momento.";
             }
 
             echo "<br>";
+            
 
             // Formulário para inserir um novo comentário
             echo "
-            <form action='../Banco de dados/mostrar-post-comentario.php' method='POST'>
+            <form action='../Banco de dados/mostrar-post-comentario-admin.php' method='POST'>
             <label for='comentario'>Digite seu comentário no campo de texto a seguir:</label> <br>
+
             <textarea name='comentario' rows='4' cols='40'></textarea> <br> <br>
+
             <input type='hidden' name='post_id' value='".$tabela["id"]."'>
+
             <input type='submit' name='inserirComentario' value='Comentar'> <br> <br> <!--inserir novo comentario-->
-            </form>
+
+            
+            
+            <input type='submit' name='excluirPost' value='Excluir Post'> <br> <br> <!--excluir post-->
+            </form> 
             ";
 
             echo "<hr>";
@@ -61,7 +74,7 @@
     // Inserindo um novo comentário no banco de dados
     if (isset($_POST['inserirComentario'])) {
         $comentario = $_POST['comentario'];
-        $usuario_id = $_SESSION['usuario_id'];
+        $usuario_id = $_SESSION['usuario_id_admin'];
         $post_id = $_POST['post_id'];
 
         if($comentario == ""){
@@ -69,22 +82,30 @@
             exit();
         } else{
             mysqli_query($conexao, "INSERT INTO comentarios (comentario, usuario_id, post_id) VALUES ('$comentario', '$usuario_id', '$post_id')");
-            header("Location: ../Paginas/index.php");
+            header("Location: ../Paginas/index-admin.php");
             exit();
         }        
-        header("Location: ../Paginas/index.php");
+        header("Location: ../Paginas/index-admin.php");
         exit();
     }
 
-    // Excluindo um comentário do banco de dados (Melhorar depois)
-    // if(isset($_POST['excluirComentario'])){
-    //     $comentario = $_POST['comentario'];
-    //     $usuario_id = $_SESSION['usuario_id_admin'];
-    //     $post_id = $_POST['post_id'];
+    // Excluindo um comentário do banco de dados
+    if(isset($_POST['excluirComentario'])){
+        $comentario = $_POST['comentario'];
+        $post_id = $_POST['post_id'];
 
-    //     mysqli_query($conexao, "DELETE FROM comentarios WHERE comentario = '$comentario' AND usuario_id = '$usuario_id' AND post_id = '$post_id'");
+        mysqli_query($conexao, "DELETE FROM comentarios WHERE comentario = '$comentario' AND post_id = '$post_id'");
         
-    //     header("Location: ../Paginas/index-admin.php");
-    //     exit();
-    // }
+        header("Location: ../Paginas/index-admin.php");
+        exit();
+    }
+    // Excluindo um post do banco de dados
+    if(isset($_POST['excluirPost'])){
+        $post_id = $_POST['post_id'];
+
+        mysqli_query($conexao, "DELETE FROM posts WHERE id = '$post_id'");
+        header("Location: ../Paginas/index-admin.php");
+        exit();
+    }
+
 ?>
