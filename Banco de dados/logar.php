@@ -6,23 +6,6 @@
     $_SESSION["logouAdmin"] = 0;
     // $_SESSION["logouUsuario"] = 0;
 
-    //Pegando o ID do usuário
-    // $verificaUsuario2 = mysqli_query($conexao, "SELECT id FROM usuarios WHERE email = '$email' AND senha = '$senha'");
-
-    // if (mysqli_num_rows($verificaUsuario2) == 1) {
-    //     // Obtém o id do usuário do banco de dados
-    //     $usuario = mysqli_fetch_assoc($verificaUsuario2);
-        
-    //     // Armazena o id do usuário na sessão
-    //     $_SESSION['usuario_id'] = $usuario;
-        
-    //     // echo "Logado com sucesso! Bem-vindo, " . $usuario['email'];
-    //     // header('Location: principal.php');  // Redireciona para a página principal ou de posts
-    // } else {
-    //     echo "Usuário ou senha inválidos!";
-    //     header('Location: index.php');
-    // }
-
     //Login do Admin
     include("conectarAdmin.php");
     //Redirecionamento para a página do admin
@@ -56,8 +39,8 @@
         exit();
     } else {
         $_SESSION['mensagem_erro'] = "Email ou senha inválidos!";
-        header('location: ../Paginas/index.php');
-        exit();
+        // header('location: ../Paginas/index.php');
+        // exit();
     }
 
 

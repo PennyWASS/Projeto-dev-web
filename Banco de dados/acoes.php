@@ -32,8 +32,8 @@
     if($sair){
         mysqli_close($conexao);
         $_SESSION["mensagem_saiu"] ='Conxeão encerrada com sucesso!';
-        header("Location: ../Paginas/index.php");
-        exit();
+        // header("Location: ../Paginas/index.php");
+        // exit();
     }elseif ($_SESSION["logouAdmin"] == 1){
         header("Location: ../Paginas/index-admin.php");
         exit();

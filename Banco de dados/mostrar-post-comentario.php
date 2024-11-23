@@ -17,7 +17,6 @@
                 CONSTRAINT fk_post_comentario FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE)");
     } 
 
-
     // Mostrando os posts e os comentários de cada post com o campo de texto para inserir um novo comentário
     $verificaTabelaPosts = mysqli_query($conexao, "SHOW TABLES LIKE 'posts'");
     if(mysqli_num_rows($verificaTabelaPosts) > 0){
@@ -106,7 +105,6 @@
     if(isset($_POST['excluirComentario'])){
         $comentario = $_POST['comentario'];
         $post_id = $_POST['post_id'];
-        
 
         mysqli_query($conexao, "DELETE FROM comentarios WHERE comentario = '$comentario' AND post_id = '$post_id' AND usuario_id = '$usuario_id'");
         

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <?php
+        // Inicia a sessão antes de qualquer coisa para poder utilizar as variáveis de sessão
+        session_start();
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    
+    <title>Login</title> 
     <style>
         /* Área para estilização do documento */
         *{
@@ -110,10 +113,7 @@
     </style>
 </head>
 <body>
-    <?php
-        // Iniciando a sessão para exibir mensagens de erro e de saída.
-        session_start();
-    ?>
+
     <!-- Sessão do bloco do cabeçalho -->
     <header class="cabeçalho">
         
@@ -136,7 +136,7 @@
                 <label for="senha">Digite sua senha:</label>
                 <input type="password" name="senha" placeholder="Senha" required> <br/> <br/>
 
-                <!-- Botão para enviar o formulário -->
+                <!-- Botão para confirmar login (envia dados para a área contendo javascript) -->
                 <input type="submit" value="Entrar" name="entrar"> <br/> <br/>
 
                 <!-- Link para a página de registro: -->
@@ -154,12 +154,21 @@
     <?php
         // Verifica se o usuário digitou a senha ou o e-mail errado e exibe uma mensagem
         if(isset($_SESSION['mensagem_erro'])){
-            echo $_SESSION['mensagem_erro'];
+            echo "
+            <script>
+                alert('".$_SESSION['mensagem_erro']."');
+                window.location.href = 'index.php';
+            </script>";
             unset($_SESSION['mensagem_erro']);
         }
+
         // Verifica se o usuário saiu da sessão e exibe uma mensagem
         if(isset($_SESSION['mensagem_saiu'])){
-            echo $_SESSION['mensagem_saiu'];
+            echo "
+            <script>
+                alert('".$_SESSION['mensagem_saiu']."');
+                window.location.href = 'index.php';
+            </script>";
             unset($_SESSION['mensagem_saiu']);
         }
     ?>

@@ -6,20 +6,56 @@
     <title>Blog</title>
 </head>
 <body>
-    <!-- Aqui deve conter os posts mais recentes -->
+    <h1>Bem-vindo ao Blog!</h1>
+
     <!-- Formulário (Deve conter todas as opções que o usuário pode utilizar) -->
-    <form action="../Banco de dados/acoes.php" method="POST">
-        
+    <form id="form-opcoes" action="../Banco de dados/acoes.php" method="POST">
         <input type="submit" name="novoPost" value="Novo Post"> 
-        <input type="submit" name="sair" value="Sair"> <br>  <!--sair da sessão-->
-        <!-- Modificações futuras -->
-        <!-- <input type="submit" name="verComentarios" value="Ver todos os meus comentários"> -->
+        <input type="submit" name="sair" value="Sair" id="sair-button"> <br> 
         <input type="submit" name="verPosts" value="Ver todos os meus posts"> <br> <br>
     </form>
-    <!-- Mostrando todos os posts: -->
+
+    <!-- Mostrando todos os posts -->
     <?php
-        //Incluindo o arquivo de conexão
         include("../Banco de dados/mostrar-post-comentario.php");
     ?>
+
+    <script>
+        // Confirmação ao sair
+        document.getElementById('sair-button').addEventListener('click', function (event) {
+            const confirmacao = confirm("Você tem certeza que deseja sair?");
+            if (!confirmacao) {
+                event.preventDefault(); // Impede o envio do formulário se o usuário cancelar
+            }
+        });
+
+        // Validação do formulário (exemplo básico)
+        document.getElementById('form-opcoes').addEventListener('submit', function (event) {
+            const inputs = this.querySelectorAll('input[type="submit"]');
+            let algumBotaoClicado = false;
+
+            inputs.forEach(function (botao) {
+                if (botao === document.activeElement) {
+                    algumBotaoClicado = true;
+                }
+            });
+
+            if (!algumBotaoClicado) {
+                alert("Selecione uma ação antes de enviar!");
+                event.preventDefault(); // Impede o envio do formulário
+            }
+        });
+
+        // Confirmação para exclusões (caso tenha essa funcionalidade na página)
+        const excluirBotoes = document.querySelectorAll('input[name="excluirPost"], input[name="excluirComentario"]');
+        excluirBotoes.forEach(function (botao) {
+            botao.addEventListener('click', function (event) {
+                const confirmacao = confirm("Você tem certeza que deseja excluir?");
+                if (!confirmacao) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

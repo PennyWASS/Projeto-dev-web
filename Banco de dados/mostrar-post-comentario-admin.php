@@ -58,8 +58,6 @@
             <input type='hidden' name='post_id' value='".$tabela["id"]."'>
 
             <input type='submit' name='inserirComentario' value='Comentar'> <br> <br> <!--inserir novo comentario-->
-
-            
             
             <input type='submit' name='excluirPost' value='Excluir Post'> <br> <br> <!--excluir post-->
             </form> 

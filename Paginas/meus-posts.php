@@ -54,8 +54,9 @@
         echo "<br> Sem posts no momento.";
     }
 
-    echo "<form method='POST'>
-    <input type='submit' name='voltar' value='Voltar'> <br> <br>
+    echo "
+    <form method='POST'>
+        <input type='submit' name='voltar' value='Voltar'> <br> <br>
     </form>";
     if(isset($_POST['voltar'])){
         header("Location: principal.php");

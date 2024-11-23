@@ -4,7 +4,6 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Registro</title>
-
     <style>
         /* Área para estilização do documento */
         *{
@@ -160,6 +159,7 @@
                 <label for="senha">Digite sua senha:</label> 
                 <input type="password" name="senha" placeholder="Senha" required> <br/> <br/>
 
+                <!-- Botão para confirmar registro (envia dados para a área contendo javascript) -->
                 <input type="submit" value="Registrar" name="registrar"> <br/> <br/>
                 
 
