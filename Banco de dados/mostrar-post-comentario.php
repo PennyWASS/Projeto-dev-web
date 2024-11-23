@@ -55,7 +55,7 @@
                     
                     // Verificando se o comentário foi feito por aquele usuario e exibindo o botão de excluir comentário
                     if($usuario_id == $comentario['usuario_id']){
-                        echo "<form action='../Banco de dados/mostrar-post-comentario-admin.php' method='POST'>
+                        echo "<form action='../Banco de dados/mostrar-post-comentario.php' method='POST'>
                         <input type='submit' name='excluirComentario' value='Excluir Comentário'> <br> <br> <!--excluir comentario-->
                         
                         <input type='hidden' name='comentario' value='".$comentario["comentario"]."'>

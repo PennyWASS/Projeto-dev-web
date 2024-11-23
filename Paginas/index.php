@@ -14,7 +14,7 @@
         <input type="submit" name="sair" value="Sair"> <br>  <!--sair da sessão-->
         <!-- Modificações futuras -->
         <!-- <input type="submit" name="verComentarios" value="Ver todos os meus comentários"> -->
-        <!-- <input type="submit" name="verPosts" value="Ver todos os meus posts"> <br> <br> -->
+        <input type="submit" name="verPosts" value="Ver todos os meus posts"> <br> <br>
     </form>
     <!-- Mostrando todos os posts: -->
     <?php
