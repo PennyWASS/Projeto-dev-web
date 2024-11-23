@@ -15,6 +15,6 @@
     // Inserindo usuários
     mysqli_query($conexao, "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')");
     // Redirecionamento para a página de login
-    header("Location: ../Paginas/login.php");
+    header("Location: ../Paginas/index.php");
     exit();
 ?>

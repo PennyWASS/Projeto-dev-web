@@ -17,10 +17,10 @@
     //     $_SESSION['usuario_id'] = $usuario;
         
     //     // echo "Logado com sucesso! Bem-vindo, " . $usuario['email'];
-    //     // header('Location: index.php');  // Redireciona para a página principal ou de posts
+    //     // header('Location: principal.php');  // Redireciona para a página principal ou de posts
     // } else {
     //     echo "Usuário ou senha inválidos!";
-    //     header('Location: login.php');
+    //     header('Location: index.php');
     // }
 
     //Login do Admin
@@ -52,11 +52,11 @@
         $nome = mysqli_fetch_assoc($pegarNome);
         $_SESSION["nome"] = $nome['nome'];
         // Redirecionamento para a página principal
-        header('location: ../Paginas/index.php');
+        header('location: ../Paginas/principal.php');
         exit();
     } else {
         $_SESSION['mensagem_erro'] = "Email ou senha inválidos!";
-        header('location: ../Paginas/login.php');
+        header('location: ../Paginas/index.php');
         exit();
     }
 

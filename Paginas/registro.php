@@ -163,7 +163,7 @@
                 <input type="submit" value="Registrar" name="registrar"> <br/> <br/>
                 
 
-                <p>Já tem uma conta? <a href="login.php">Faça login</a></p> <!-- Link para a página de login -->
+                <p>Já tem uma conta? <a href="index.php">Faça login</a></p> <!-- Link para a página de login -->
             </form>
         </section>
     </main>

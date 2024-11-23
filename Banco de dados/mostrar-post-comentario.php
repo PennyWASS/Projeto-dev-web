@@ -21,7 +21,7 @@
     // Mostrando os posts e os comentários de cada post com o campo de texto para inserir um novo comentário
     $verificaTabelaPosts = mysqli_query($conexao, "SHOW TABLES LIKE 'posts'");
     if(mysqli_num_rows($verificaTabelaPosts) > 0){
-        $dados = mysqli_query($conexao, "SELECT * FROM posts");
+        $dados = mysqli_query($conexao, "SELECT * FROM posts ORDER BY id DESC");
         while ($tabela = mysqli_fetch_array($dados)) {
             // Mostrando os posts
             echo "<h4>". $tabela["titulo"]. "</h4>";
@@ -95,10 +95,10 @@
             exit();
         } else{
             mysqli_query($conexao, "INSERT INTO comentarios (comentario, usuario_id, post_id) VALUES ('$comentario', '$usuario_id', '$post_id')");
-            header("Location: ../Paginas/index.php");
+            header("Location: ../Paginas/principal.php");
             exit();
         }        
-        header("Location: ../Paginas/index.php");
+        header("Location: ../Paginas/principal.php");
         exit();
     }
 
@@ -110,7 +110,7 @@
 
         mysqli_query($conexao, "DELETE FROM comentarios WHERE comentario = '$comentario' AND post_id = '$post_id' AND usuario_id = '$usuario_id'");
         
-        header("Location: ../Paginas/index.php");
+        header("Location: ../Paginas/principal.php");
         exit();
     }
     // Excluindo um post do banco de dados
@@ -118,7 +118,7 @@
         $post_id = $_POST['post_id'];
 
         mysqli_query($conexao, "DELETE FROM posts WHERE id = '$post_id' AND usuario_id = '$usuario_id'");
-        header("Location: ../Paginas/index.php");
+        header("Location: ../Paginas/principal.php");
         exit();
     }
 ?>
