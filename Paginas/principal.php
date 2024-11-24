@@ -32,11 +32,6 @@
                 <hr/>
             </section>
         </nav>
-        <!-- Mostrando todos os posts: -->
-        <?php
-            //Incluindo o arquivo de conexão
-            Include("../Banco de dados/mostrar-post-comentario.php");
-        ?>
     </main>
 
     <!-- Sessão para o bloco do rodapé -->
