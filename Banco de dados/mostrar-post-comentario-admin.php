@@ -1,8 +1,12 @@
+<head>
+    <link rel="stylesheet" href="../estilo/post-comentario.css">
+</head>
 <?php
     // Conexão com o banco de dados
     include("conectarDB.php");
     session_start();
-
+    $usuario_id = $_SESSION['usuario_id'];
+    $nome_usuario = $_SESSION['nome'];
     // Criando a tabela de comentários caso ela não exista
     $verificaTabelaComentarios = mysqli_query($conexao, "SHOW TABLES LIKE 'comentarios'"); 
     if(mysqli_num_rows($verificaTabelaComentarios) == 0){
@@ -19,38 +23,43 @@
     // Mostrando os posts e os comentários de cada post com o campo de texto para inserir um novo comentário
     $verificaTabelaPosts = mysqli_query($conexao, "SHOW TABLES LIKE 'posts'");
     if(mysqli_num_rows($verificaTabelaPosts) > 0){
-        $dados = mysqli_query($conexao, "SELECT * FROM posts");
+        $dados = mysqli_query($conexao, "SELECT * FROM posts ORDER BY id DESC");
         while ($tabela = mysqli_fetch_array($dados)) {
             // Mostrando os posts
+            echo "<div class='post'>";
             echo "<h4>". $tabela["titulo"]. "</h4>";
+            if($usuario_id == $tabela['usuario_id']){
+                echo "<p>Criado por: <b>". $nome_usuario  ."</b></p>";
+            }
             if($tabela["imagem"] != ""){
                 echo "<img width='300px' alt='Imagem' src='".$tabela["imagem"]."'>" . "<br>";
             }
-            echo $tabela["conteudo"] . "<br>";
+            echo "<p>".$tabela["conteudo"]."</p>";
             echo "<h3>Comentários:</h3>";
             
             // Mostrando os comentários do post
             if(mysqli_num_rows($verificaTabelaComentarios) > 0){
                 $comentarios = mysqli_query($conexao, "SELECT * FROM comentarios WHERE post_id = ".$tabela["id"]. " ORDER BY id DESC");
                 while($comentario = mysqli_fetch_array($comentarios)){
-                    echo $comentario["comentario"] . "<br>";
+                    echo "<div class='comentario'>";
+                    echo "<p>".$comentario["comentario"]."</p>";
                     echo "<form action='../Banco de dados/mostrar-post-comentario-admin.php' method='POST'>
-                    <input type='submit' name='excluirComentario' value='Excluir Comentário'> <br> <br> <!--excluir comentario-->
+                    <input type='submit' name='excluirComentario' value='Excluir Comentário' id='excluirComentario'> <br> <br> <!--excluir comentario-->
                     
                     <input type='hidden' name='comentario' value='".$comentario["comentario"]."'>
                     <input type='hidden' name='post_id' value='".$tabela["id"]."'>
                     </form>";
+                    echo "</div>";
                 }
             } else{
-                echo "Sem comentários no momento.";
+                echo "<p>Sem comentários no momento.</p>";
             }
 
             echo "<br>";
             
 
             // Formulário para inserir um novo comentário
-            echo "
-            <form action='../Banco de dados/mostrar-post-comentario-admin.php' method='POST'>
+            echo "<form action='../Banco de dados/mostrar-post-comentario-admin.php' method='POST'>
             <label for='comentario'>Digite seu comentário no campo de texto a seguir:</label> <br>
 
             <textarea name='comentario' rows='4' cols='40'></textarea> <br> <br>
@@ -62,8 +71,8 @@
             <input type='submit' name='excluirPost' value='Excluir Post'> <br> <br> <!--excluir post-->
             </form> 
             ";
-
             echo "<hr>";
+            echo "</div>";
         }
     } else{
         echo "<br> Sem posts no momento.";

@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="../estilo/post-comentario.css">
+</head>
+
 <?php
     // Conexão com o banco de dados
     include("conectarDB.php");
@@ -23,21 +27,21 @@
         $dados = mysqli_query($conexao, "SELECT * FROM posts ORDER BY id DESC");
         while ($tabela = mysqli_fetch_array($dados)) {
             // Mostrando os posts
+            echo "<div class='post'>";
             echo "<h4>". $tabela["titulo"]. "</h4>";
             if($usuario_id == $tabela['usuario_id']){
-                echo("Criado por: <b>". $nome_usuario  ."</b> <br>");
+                echo "<p>Criado por: <b>". $nome_usuario  ."</b></p>";
             }
             if($tabela["imagem"] != ""){
-                echo "<img width='300px' alt='Imagem' src='".$tabela["imagem"]."'>" . "<br>";
+                echo "<img width='300px' alt='Imagem' src='".$tabela["imagem"]."'><br>";
             }
-            echo $tabela["conteudo"] . "<br>";
+            echo "<p>".$tabela["conteudo"]."</p>";
 
             // Verificando se o post foi feito por aquele usuario e exibindo o botão de excluir post
             if($usuario_id == $tabela['usuario_id']){
                 echo "<form action='../Banco de dados/mostrar-post-comentario.php' method='POST'>
-                <input type='submit' name='excluirPost' value='Excluir Post'> <br> <br> <!--excluir post-->
+                <input type='submit' name='excluirPost' value='Excluir Post'>
                 <input type='hidden' name='post_id' value='".$tabela["id"]."'>
-                
                 </form>";
             }
 
@@ -46,42 +50,42 @@
             // Mostrando os comentários do post
             if(mysqli_num_rows($verificaTabelaComentarios) > 0){
                 $comentarios = mysqli_query($conexao, "SELECT * FROM comentarios WHERE post_id = ".$tabela["id"]. " ORDER BY id DESC");
+                
                 while($comentario = mysqli_fetch_array($comentarios)){
+                    echo "<div class='comentario'>";
                     if($usuario_id == $comentario['usuario_id']){
-                        echo("<b>". $nome_usuario  ."</b> <br>");
+                        echo "<b>". $nome_usuario  ."</b><br>";
+                        
                     }
-                    echo $comentario["comentario"] . "<br>";
+                    echo "<p>".$comentario["comentario"]."</p>";
                     
                     // Verificando se o comentário foi feito por aquele usuario e exibindo o botão de excluir comentário
                     if($usuario_id == $comentario['usuario_id']){
                         echo "<form action='../Banco de dados/mostrar-post-comentario.php' method='POST'>
-                        <input type='submit' name='excluirComentario' value='Excluir Comentário'> <br> <br> <!--excluir comentario-->
-                        
+                        <input type='submit' name='excluirComentario' value='Excluir Comentário' id='excluirComentario'>
                         <input type='hidden' name='comentario' value='".$comentario["comentario"]."'>
                         <input type='hidden' name='post_id' value='".$tabela["id"]."'>
                         </form>";
                     }
+                    echo "</div>";
                 }
             } else{
-                echo "Sem comentários no momento.";
+                echo "<p>Sem comentários no momento.</p>";
             }
 
-            echo "<br>";
-
             // Formulário para inserir um novo comentário
-            echo "
-            <form action='../Banco de dados/mostrar-post-comentario.php' method='POST'>
-            <label for='comentario'>Digite seu comentário no campo de texto a seguir:</label> <br>
-            <textarea name='comentario' rows='4' cols='40'></textarea> <br> <br>
+            echo "<form action='../Banco de dados/mostrar-post-comentario.php' method='POST'>
+            <label for='comentario'>Digite seu comentário no campo de texto a seguir:</label><br>
+            <textarea name='comentario' rows='4' cols='40'></textarea><br>
             <input type='hidden' name='post_id' value='".$tabela["id"]."'>
-            <input type='submit' name='inserirComentario' value='Comentar'> <br> <br> <!--inserir novo comentario-->
-            </form>
-            ";
+            <input type='submit' name='inserirComentario' value='Comentar'>
+            </form>";
             
-            echo "<hr>";
+            echo "<hr>
+            </div>";
         }
     } else{
-        echo "<br> Sem posts no momento.";
+        echo "<p>Sem posts no momento.</p>";
     }
 
     // Inserindo um novo comentário no banco de dados

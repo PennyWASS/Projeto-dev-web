@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="../estilo/post-comentario.css">
+</head>
 <?php
     // Incluindo o arquivo de conexão
     include("../Banco de dados/conectarDB.php");
@@ -10,8 +13,10 @@
     $verificaTabelaPosts = mysqli_query($conexao, "SHOW TABLES LIKE 'posts'");
     if(mysqli_num_rows($verificaTabelaPosts) > 0){
         $dados = mysqli_query($conexao, "SELECT * FROM posts WHERE usuario_id = " . $usuario_id . " ORDER BY id DESC");
-        echo "<h1>". $nome_usuario ." Esses são os seus Posts</h1>";
+        echo "<h1 class='cabeçalho'>". $nome_usuario ." Esses são os seus Posts</h1>";
+        
         while ($tabela = mysqli_fetch_array($dados)) {
+            echo "<div class='post'>";
             // Mostrando os posts
             echo "<h4>". $tabela["titulo"]. "</h4>";
             if($usuario_id == $tabela['usuario_id']){
@@ -31,6 +36,7 @@
                 </form>";
             }
 
+            echo "<div class='comentarios'>";
             echo "<h3>Comentários:</h3>";
             
             // Mostrando os comentários do post
@@ -46,8 +52,9 @@
                 echo "Sem comentários no momento.";
             }
 
+            echo "</div>"; // Fechando div class='comentarios'
+            echo "</div>"; // Fechando div class='post'
             echo "<br>";
-            
             echo "<hr>";
         }
     } else{

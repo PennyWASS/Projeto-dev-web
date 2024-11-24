@@ -1,0 +1,77 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    /* Padrões de estilização para todo o conteúdo do documento */
+
+}
+
+.post {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post h4 {
+    margin-top: 0;
+}
+
+.post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.post p {
+    line-height: 1.6;
+}
+.cabeçalho{
+    background-color: rgb(54,54,54);
+    height: 150px;
+    padding: 25px;
+    text-align: center;       
+    padding: 30px;
+    color: white;
+}
+
+.comentario {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.comentario p {
+    margin: 0;
+}
+
+form {
+    margin-top: 10px;
+}
+
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+form input[type="submit"] {
+    border-radius: 10px;
+    border-width: 1px;
+    height: 40px;
+    width: 100px;
+    border-color: aliceblue;
+}
+#excluirComentario{
+    width: 130px;
+}
+form input[type="submit"]:hover {
+    background-color: darkgray;
+    color: white;
+}

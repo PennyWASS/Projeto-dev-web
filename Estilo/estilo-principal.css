@@ -1,0 +1,96 @@
+/* Área para estilização do documento */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    /* Padrões de estilização para todo o conteúdo do documento */
+
+}
+html{ 
+    height: 100%;
+    /* Altura do documento html */
+
+}
+body{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Altura do corpo documento html e organização do conteúdo do corpo em relação à altura*/
+
+}
+.cabeçalho{
+    background-color: rgb(54,54,54);
+    height: 150px;
+    padding: 25px;
+    /* Definição da altura, afastamento e cor de fundo do cabeçalho */
+
+}
+.titulo{
+    text-align: center;         
+    padding: 30px;
+    /* Centralização do título e definição do seu afastamento em relação as bordas */
+
+}
+.titulo h1{
+    font-weight: lighter;
+    font-size: 30px;
+    color: aliceblue;
+    /* Definição da cor, peso e tamanho da fonte, e do afastamento do título em relação as bordas */
+
+}
+.navegação{
+    background-color: ghostwhite;
+    height: 90px;
+    /* Definição da cor e altura da área da barra de navegação */
+
+}
+.principal{
+    flex: 1;
+    background-color: rgb(222,222,222);
+    display: flex;
+    flex-direction: column;
+    /* Organização do conteúdo principal e definição de cor de fundo */
+    
+}
+.form{
+    background-color: ghostwhite;
+    padding: 20px;
+    font-size: 17px;
+    width: fit-content;
+    height: 30px;
+    margin: auto;
+    /* Definição da dor de fundo do formulário, afastamento, tamanho da fonte, largura, margem e altura do bloco do formulário */
+   
+}
+.form input[type=submit] {
+    border-radius: 10px;
+    border-width: 1px;
+    height: 40px;
+    width: auto;
+    border-color: aliceblue;
+    text-shadow: none;
+    padding: 10px;
+    border-bottom: none;
+    /*Definição do arrendondamento das bordas do botão, largura das bordas, altura e largura do botão, cor das bordas, afastamento do bloco anterior, e remoção das bordas e da sombra do texto */
+
+}
+.form input[type=submit]:hover {
+    background-color: darkgray;
+    color: white;
+    /* Definição da cor de fundo e da cor do texto do hover do botão  */
+
+}
+.form hr{
+    width: 310px;
+    margin: 10px auto;
+    border: 0.5px solid black;
+    /* Definição da largura, margem, e borda da linha horizontal embaixo dos botões */
+     
+}
+.rdp{
+    background-color: rgb(54,54,54);
+    padding: 10px;
+    margin-top: auto;
+    /* Definição da cor de fundo, afastamento, e margem do rodapé */
+    
+}
