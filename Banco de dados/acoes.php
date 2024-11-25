@@ -3,7 +3,7 @@
     include("conectarDB.php"); //Conexão com o banco de dados
     // Armazenando os valores dos botões em variáveis
     $sair = isset($_POST["sair"]);
-    $deletar = isset($_POST["deletar"]);
+    // $deletar = isset($_POST["deletar"]);
     $novoPost = isset($_POST["novoPost"]);
     $verPosts = isset($_POST["verPosts"]);
 
@@ -23,10 +23,10 @@
     }
 
     //Deletando todos os comentários
-    if($deletar){
-        mysqli_query($conexao, "DROP TABLE comentarios");
-        echo "Todos os comentários foram excluidos";
-    }
+    // if($deletar){
+    //     mysqli_query($conexao, "DROP TABLE comentarios");
+    //     echo "Todos os comentários foram excluidos";
+    // }
 
     //Sair da sessão
     if($sair){
